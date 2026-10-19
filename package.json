@@ -1,15 +1,16 @@
 {
   "name": "inm320-a3",
   "version": "1.0.0",
-  "description": "INM320 Assignment 3: CSS Precompiler (Sass)",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "sass": "sass --watch src/scss/style.scss:assets/css/style.css",
-    "build": "sass src/scss/style.scss:assets/css/style.css",
-    "serve": "lite-server",
-    "start": "concurrently \"npm run sass\" \"npm run serve\""
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server --baseDir=\"public\"",
+    "watch": "sass --watch src/scss:public/assets/css",
+    "start": "concurrently \"npm run watch\" \"npm run dev\""
   },
-  "keywords": ["sass", "scss", "inm320"],
-  "author": "Nahal",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^9.1.0",

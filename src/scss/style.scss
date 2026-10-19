@@ -1,38 +1,27 @@
-// INM320 Assignment 3 - scss version
-// started from the reference css and changed it to scss
-
 // variables
-$main-font: Quando;
+$font-stack: Quando;
 $heading-font: 'Josefin Sans', sans-serif;
 $text-color: #787878;
-$dark: #111111;
-$navy: #324360;
-$blue-hover: #35c4ce;
-$footer-bg: #eaf2ff;
-$footer-text: #989898;
-
+$dark-color: #111111;
+$primary-color: #324360;
+$hover-color: #35c4ce;
+$footer-color: #989898;
+$spacing: 25px;
 
 // mixins
-@mixin tablet {
-    @media only screen and (min-width: 650px) {
-        @content;
-    }
-}
-
 @mixin caps($size) {
     text-transform: uppercase;
     font-size: $size;
     letter-spacing: 1px;
 }
 
-@mixin logo {
+@mixin logo($margin) {
     width: 200px;
-    margin: 20px auto 40px;
+    margin: $margin;
 }
 
-
 body {
-    font-family: $main-font;
+    font-family: $font-stack;
     font-size: 15px;
     color: $text-color;
 }
@@ -41,27 +30,27 @@ img {
     height: auto;
 }
 p {
-    margin-bottom: 25px;
+    margin-bottom: $spacing;
     line-height: 1.6em;
 }
 a {
     font-weight: 400;
     text-decoration: none;
-    color: $dark;
+    color: $dark-color;
     transition: .20s;
+
     &:hover {
         color: #999999;
     }
 }
-
 h1, h2, h3, h4, h5, h6 {
-    margin-top: 25px;
+    margin-top: $spacing;
     margin-bottom: 20px;
     font-family: $heading-font;
     font-weight: 400;
     line-height: 1.3em;
     word-wrap: break-word;
-    color: $dark;
+    color: $dark-color;
 }
 h1 { font-size: 37px; }
 h2 { font-size: 31px; }
@@ -75,19 +64,17 @@ h6 { font-size: 15px; }
     margin: 0 auto;
 }
 
-
-/* header + nav */
+/* header and main nav */
 header {
     font-family: $heading-font;
+
     nav ul {
         display: none;
     }
 }
-
 .top-logo {
-    @include logo;
+    @include logo(20px auto 40px);
 }
-
 
 /* posts */
 article {
@@ -98,14 +85,13 @@ article {
 .image-part {
     margin-bottom: 10px;
 }
-
 .post-title {
     margin-top: 0;
 
     a {
-        color: $navy;
-        @include caps(26px);
-        letter-spacing: 0; // the title doesnt need the spacing
+        color: $primary-color;
+        text-transform: uppercase;
+        font-size: 26px;
         font-weight: 900;
         margin-top: 15px;
         margin-bottom: 15px;
@@ -113,35 +99,38 @@ article {
         transition: all .3s ease;
 
         &:hover {
-            color: $blue-hover;
+            color: $hover-color;
         }
     }
 }
-
 
 /* footer */
 footer {
     padding: 30px 0;
     text-align: center;
-    background: $footer-bg;
-    color: $footer-text;
+    background: #eaf2ff;
+    color: $footer-color;
 }
 #footer a {
-    color: $footer-text;
-    &:hover { color: $dark; }
+    color: $footer-color;
+
+    &:hover {
+        color: $dark-color;
+    }
 }
 .footer-logo {
-    @include logo;
-    margin: 20px auto;
+    @include logo(20px auto);
     text-align: center;
     vertical-align: middle;
 }
 .footer-social-links {
     padding: 20px 0;
     line-height: 2em;
+
     a {
         margin: 0 10px;
         @include caps(16px);
+
         span {
             display: none;
         }
@@ -150,12 +139,11 @@ footer {
 #footer-copyright {
     padding: 20px 0;
     font-size: 12px;
-    color: #989898;
+    color: $footer-color;
 }
 
 
-// tablet and up
-@include tablet {
+@media only screen and (min-width: 650px) {
     .container {
         width: 90%;
     }
@@ -178,27 +166,27 @@ footer {
         }
         a {
             font-family: $heading-font;
-            color: $navy;
+            color: $primary-color;
             @include caps(12px);
             font-weight: 900;
+
             &:hover {
-                color: $blue-hover;
+                color: $hover-color;
             }
         }
         li.menu-item-has-children > a::after {
             margin-left: 7px;
             font-family: 'Font Awesome 5 Free';
             font-size: 13px;
-            color: $navy;
+            color: $primary-color;
             content: '\f078';
         }
     }
-
     .current-menu-item a {
-        border-bottom: 2px solid $navy;
+        border-bottom: 2px solid $primary-color;
     }
 
-    // dropdown menu
+    /* sub nav */
     header nav ul ul {
         visibility: hidden;
         opacity: 0;
@@ -215,15 +203,16 @@ footer {
         }
         a {
             display: block;
-            color: $dark;
+            color: $dark-color;
             min-width: 175px;
             margin: 0;
             padding: 20px 10px;
             line-height: 1.4em;
             letter-spacing: 1px;
             transition: .35s;
+
             &:hover {
-                background: #fff;
+                background: #ffffff;
                 color: #000;
             }
         }
@@ -241,8 +230,10 @@ footer {
         flex: 1;
         overflow: hidden;
         margin-bottom: 0;
+
         img {
             transition: transform 3.5s ease-in-out;
+
             &:hover {
                 transform: scale(1.5,1.5);
             }
@@ -257,6 +248,7 @@ footer {
     .footer-social-links {
         a {
             margin: 0 28px;
+
             span {
                 display: inline;
                 font-size: 11px;
